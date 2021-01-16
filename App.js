@@ -9,6 +9,7 @@ import React,{Component} from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import StackScreen from './src/Navigation/StackScreen'
 import OneSignal from 'react-native-onesignal';
+import Sendpush from './src/Compoment/Sendpush';
 
 
 

@@ -10,6 +10,7 @@ import TabScreen from './TabScreen';
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import ScanQR from '../Compoment/ScanQR';
 import {showPushNotification} from '../Compoment/PushNotification'
+import Sendpush from '../Compoment/Sendpush';
 const Stack = createStackNavigator();
 function getHeaderTitle(route) {
     const routeName = getFocusedRouteNameFromRoute(route) ?? 'TrangChu';
@@ -50,14 +51,14 @@ function IconBadge(route) {
         )
     }
 }
-function addpuss(route)
+function addpuss(route,navigation)
 {
     let b = getFocusedRouteNameFromRoute(route) ?? 'TrangChu';
     if (b == "TrangChu") {
         return (
             <TouchableOpacity
             activeOpacity={0.6}
-            onPress={()=>showPushNotification('Test','Add PushNotification')}
+            onPress={()=>navigation.navigate('SendPush')}
             >
             <View style={{ width: 24, height: 24, margin: 5 }}>
                 <Ionicons name={'md-add-circle-outline'} size={24} />
@@ -135,7 +136,7 @@ const StackScreen = () => {
                             IconBadge(route)
                         ),
                         headerLeft: () =>(
-                            addpuss(route)
+                            addpuss(route,navigation)
                             ),
                         headerTintColor: '#00CC88',
                         headerTitleStyle: {
@@ -176,7 +177,25 @@ const StackScreen = () => {
                         },
                     }}
                 />
-
+                   <Stack.Screen
+                    name='SendPush'
+                    component={Sendpush}
+                    options={{
+                        title: 'Gửi Thông Báo',
+                        headerTitleAlign: 'center',
+                        headerTintColor: '#00CC88',
+                        headerTitleStyle: {
+                            alignSelf: 'center',
+                            textAlign: 'center',
+                            color: 'black'
+                        },
+                        headerStyle: {
+                            backgroundColor: '#e3e3e3',
+                            elevation: 0, // remove shadow on Android
+                            shadowOpacity: 0, // remove shadow on iOS
+                        },
+                    }}
+                />
 
             </Stack.Navigator>
         </NavigationContainer>

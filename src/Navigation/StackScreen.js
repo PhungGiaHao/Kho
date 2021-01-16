@@ -9,6 +9,7 @@ import DangKy from '../Compoment/DangKy';
 import TabScreen from './TabScreen';
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import ScanQR from '../Compoment/ScanQR';
+import {showPushNotification} from '../Compoment/PushNotification'
 const Stack = createStackNavigator();
 function getHeaderTitle(route) {
     const routeName = getFocusedRouteNameFromRoute(route) ?? 'TrangChu';
@@ -46,6 +47,22 @@ function IconBadge(route) {
                     <Text style={{ color: 'white', fontSize: 10, fontWeight: 'bold' }}>3</Text>
                 </View>
             </View>
+        )
+    }
+}
+function addpuss(route)
+{
+    let b = getFocusedRouteNameFromRoute(route) ?? 'TrangChu';
+    if (b == "TrangChu") {
+        return (
+            <TouchableOpacity
+            activeOpacity={0.6}
+            onPress={()=>showPushNotification('Test','Add PushNotification')}
+            >
+            <View style={{ width: 24, height: 24, margin: 5 }}>
+                <Ionicons name={'md-add-circle-outline'} size={24} />
+            </View>
+            </TouchableOpacity>
         )
     }
 }
@@ -114,9 +131,12 @@ const StackScreen = () => {
                         title: getHeaderTitle(route),
                         headerTitleAlign: 'center',
                         headerRight: () => (
+                           
                             IconBadge(route)
                         ),
-                        headerLeft: null,
+                        headerLeft: () =>(
+                            addpuss(route)
+                            ),
                         headerTintColor: '#00CC88',
                         headerTitleStyle: {
                             alignSelf: 'center',

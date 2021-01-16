@@ -23,6 +23,8 @@ export default class MoDau extends Component {
 }
 const styles = StyleSheet.create({
 container: {
+    flex:1, 
+    backgroundColor:'white',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
